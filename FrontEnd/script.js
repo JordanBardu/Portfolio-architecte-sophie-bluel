@@ -1,25 +1,32 @@
-const gallery = fetch("http://localhost:5678/api/works")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    return data;
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+async function getGalleryWorks() {
+  const gallery = await fetch("http://localhost:5678/api/works")
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return gallery;
+}
 
-const galleryContainer = document.getElementsByClassName("gallery")[0];
+async function displayGalleryWork() {
+  const galleryData = await getGalleryWorks();
+  const galleryContainer = document.getElementsByClassName("gallery")[0];
 
-gallery.then((data) => {
-  data.forEach((element) => {
-    const item = document.createElement("figure");
-    const itemImg = document.createElement("img");
-    const itemTitle = document.createElement("figcaption");
-    item.appendChild(itemImg);
-    item.appendChild(itemTitle);
-    itemImg.src = element.imageUrl;
-    itemTitle.innerHTML = element.title;
-    itemImg.alt = element.title;
-    galleryContainer.appendChild(item);
+  galleryData.forEach((work) => {
+    const galleryWork = document.createElement("figure");
+    const galleryWorkImage = document.createElement("img");
+    const galleryWorkTitle = document.createElement("figcaption");
+
+    galleryWorkImage.src = work.imageUrl;
+    galleryWorkTitle.innerHTML = work.title;
+    galleryWorkImage.alt = work.title;
+
+    galleryWork.appendChild(galleryWorkImage);
+    galleryWork.appendChild(galleryWorkTitle);
+    galleryContainer.appendChild(galleryWork);
   });
-});
+}
+
+displayGalleryWork();

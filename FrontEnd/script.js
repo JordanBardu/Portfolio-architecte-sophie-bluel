@@ -2,7 +2,7 @@
 
 // Faire fonctions fléchées
 
-async function getGalleryWorks() {
+const getGalleryWorks = async () => {
   try {
     const response = await fetch("http://localhost:5678/api/works");
     if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
@@ -11,9 +11,9 @@ async function getGalleryWorks() {
     console.error("Erreur lors de la récupération des œuvres :", error);
     return [];
   }
-}
+};
 
-function displayGalleryWork(galleryData) {
+const displayGalleryWork = (galleryData) => {
   const galleryContainer = document.getElementsByClassName("gallery")[0];
   galleryContainer.innerHTML = "";
 
@@ -30,18 +30,18 @@ function displayGalleryWork(galleryData) {
     galleryWork.appendChild(galleryWorkTitle);
     galleryContainer.appendChild(galleryWork);
   });
-}
+};
 
-async function init() {
+const init = async () => {
   const allWorks = await getGalleryWorks();
   displayGalleryWork(allWorks);
-}
+};
 
 init();
 
 // Récupération des catégories et construction du menu de filtrer dynamiquement
 
-async function getCategories() {
+const getCategories = async () => {
   const categories = await fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
     .then((data) => {
@@ -52,9 +52,9 @@ async function getCategories() {
     });
 
   return categories;
-}
+};
 
-async function displayCategories() {
+const displayCategories = async () => {
   const categoriesData = await getCategories();
   const categoriesContainer = document.getElementById("categories");
   const allCategoriesButton = document.createElement("button");
@@ -83,9 +83,9 @@ async function displayCategories() {
       handleActiveButton(event);
     });
   });
-}
+};
 
-async function filterWorks(event) {
+const filterWorks = async (event) => {
   const allWorks = await getGalleryWorks();
   const categoryId = event.target.getAttribute("categoryId");
 
@@ -99,7 +99,7 @@ async function filterWorks(event) {
   });
 
   displayGalleryWork(filteredWorks);
-}
+};
 
 const handleActiveButton = (event) => {
   const categoryButtons = document.querySelectorAll(".category__button");

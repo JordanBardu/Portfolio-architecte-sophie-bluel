@@ -1,18 +1,21 @@
+// Récupération et construction de la galerie
+
+// Faire fonctions fléchées
+
 async function getGalleryWorks() {
-  const gallery = await fetch("http://localhost:5678/api/works")
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  return gallery;
+  try {
+    const response = await fetch("http://localhost:5678/api/works");
+    if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la récupération des œuvres :", error);
+    return [];
+  }
 }
 
-async function displayGalleryWork() {
-  const galleryData = await getGalleryWorks();
+function displayGalleryWork(galleryData) {
   const galleryContainer = document.getElementsByClassName("gallery")[0];
+  galleryContainer.innerHTML = "";
 
   galleryData.forEach((work) => {
     const galleryWork = document.createElement("figure");
@@ -29,4 +32,81 @@ async function displayGalleryWork() {
   });
 }
 
-displayGalleryWork();
+async function init() {
+  const allWorks = await getGalleryWorks();
+  displayGalleryWork(allWorks);
+}
+
+init();
+
+// Récupération des catégories et construction du menu de filtrer dynamiquement
+
+async function getCategories() {
+  const categories = await fetch("http://localhost:5678/api/categories")
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return categories;
+}
+
+async function displayCategories() {
+  const categoriesData = await getCategories();
+  const categoriesContainer = document.getElementById("categories");
+  const allCategoriesButton = document.createElement("button");
+
+  allCategoriesButton.classList.add(
+    "category__button",
+    "category__button__active",
+  );
+  allCategoriesButton.textContent = "Tous";
+  categoriesContainer.appendChild(allCategoriesButton);
+
+  categoriesData.forEach((category) => {
+    const categoryButton = document.createElement("button");
+
+    categoryButton.className = "category__button";
+    categoryButton.textContent = category.name;
+    categoryButton.setAttribute("categoryId", category.id);
+
+    categoriesContainer.appendChild(categoryButton);
+  });
+
+  const categoryButtons = document.querySelectorAll(".category__button");
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      filterWorks(event);
+      handleActiveButton(event);
+    });
+  });
+}
+
+async function filterWorks(event) {
+  const allWorks = await getGalleryWorks();
+  const categoryId = event.target.getAttribute("categoryId");
+
+  if (categoryId === null) {
+    displayGalleryWork(allWorks);
+    return;
+  }
+
+  const filteredWorks = allWorks.filter((work) => {
+    return work.category.id.toString() === categoryId;
+  });
+
+  displayGalleryWork(filteredWorks);
+}
+
+const handleActiveButton = (event) => {
+  const categoryButtons = document.querySelectorAll(".category__button");
+  categoryButtons.forEach((button) => {
+    button.classList.remove("category__button__active");
+  });
+  event.target.classList.add("category__button__active");
+};
+
+displayCategories();

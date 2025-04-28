@@ -1,7 +1,5 @@
 // Récupération et construction de la galerie
 
-// Faire fonctions fléchées
-
 const getGalleryWorks = async () => {
   try {
     const response = await fetch("http://localhost:5678/api/works");
@@ -53,6 +51,7 @@ const getCategories = async () => {
 
   return categories;
 };
+
 
 const displayCategories = async () => {
   const categoriesData = await getCategories();
@@ -109,4 +108,24 @@ const handleActiveButton = (event) => {
   event.target.classList.add("category__button__active");
 };
 
-displayCategories();
+let token = localStorage.getItem("token");
+if (!token) {
+  displayCategories();
+}
+
+const loggedHomepage = () => {
+  if (token) {
+    const loginButton = document.getElementById("login-button");
+    const logoutButton = document.getElementById("logout-button");
+    const editionModeHeader = document.getElementById("edition-mode-header");
+    const modifyButton = document.getElementById("modify-text");
+
+      loginButton.style.display = "none";
+      logoutButton.style.display = "flex";
+      editionModeHeader.style.display = "flex";
+      modifyButton.style.display = "flex";
+
+  }
+}
+
+loggedHomepage();

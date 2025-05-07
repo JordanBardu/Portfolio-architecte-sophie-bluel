@@ -52,7 +52,6 @@ const getCategories = async () => {
   return categories;
 };
 
-
 const displayCategories = async () => {
   const categoriesData = await getCategories();
   const categoriesContainer = document.getElementById("categories");
@@ -113,19 +112,77 @@ if (!token) {
   displayCategories();
 }
 
-const loggedHomepage = () => {
+const toggleAdminHomepage = () => {
+  const loginButton = document.getElementById("login-button");
+  const logoutButton = document.getElementById("logout-button");
+  const editionModeHeader = document.getElementById("edition-mode-header");
+  const modifyButton = document.getElementById("modify-text");
   if (token) {
-    const loginButton = document.getElementById("login-button");
-    const logoutButton = document.getElementById("logout-button");
-    const editionModeHeader = document.getElementById("edition-mode-header");
-    const modifyButton = document.getElementById("modify-text");
-
-      loginButton.style.display = "none";
-      logoutButton.style.display = "flex";
-      editionModeHeader.style.display = "flex";
-      modifyButton.style.display = "flex";
-
+    loginButton.style.display = "none";
+    logoutButton.style.display = "flex";
+    editionModeHeader.style.display = "flex";
+    modifyButton.style.display = "flex";
+  } else {
+    loginButton.style.display = "flex";
+    logoutButton.style.display = "none";
+    editionModeHeader.style.display = "none";
+    modifyButton.style.display = "none";
   }
-}
+};
 
-loggedHomepage();
+const logout = () => {
+  localStorage.removeItem("token");
+  window.location.reload();
+};
+
+toggleAdminHomepage();
+
+const openPhotoGalleryModal = async () => {
+  const modal = document.getElementById("photo-gallery-modal");
+  const overlay = document.getElementById("modal-overlay");
+  const allWorks = await getGalleryWorks();
+  displayModalGallery(allWorks);
+  // addPhotoModal.style.display = "none";
+
+  modal.style.display = "flex";
+  overlay.style.display = "flex";
+  document.body.classList.add("no-scroll");
+};
+
+const closeModal = () => {
+  const photoGalleryModal = document.getElementById("photo-gallery-modal");
+  const addPhotoModal = document.getElementById("add-photo-modal");
+  const overlay = document.getElementById("modal-overlay");
+
+  photoGalleryModal.style.display = "none";
+  addPhotoModal.style.display = "none";
+  overlay.style.display = "none";
+  document.body.classList.remove("no-scroll");
+};
+
+const openAddPhotoModal = () => {
+  const modal = document.getElementById("add-photo-modal");
+  // const photoGalleryModal = document.getElementById("photo-gallery-modal");
+  const overlay = document.getElementById("modal-overlay");
+  // photoGalleryModal.style.display = "none";
+
+  modal.style.display = "flex";
+  overlay.style.display = "flex";
+  document.body.classList.add("no-scroll");
+};
+
+const displayModalGallery = (galleryData) => {
+  // A voir pour faire une seule fonction avec displayGallery
+  const modalGalleryContainer = document.getElementById("modal-gallery");
+  modalGalleryContainer.innerHTML = "";
+
+  galleryData.forEach((work) => {
+    const galleryWork = document.createElement("figure");
+    const galleryWorkImage = document.createElement("img");
+
+    galleryWorkImage.src = work.imageUrl;
+
+    galleryWork.appendChild(galleryWorkImage);
+    modalGalleryContainer.appendChild(galleryWork);
+  });
+};

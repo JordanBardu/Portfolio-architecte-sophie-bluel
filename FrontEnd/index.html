@@ -11,6 +11,30 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+
+<!--Enlever les onclick-->
+
+	<div id="modal-overlay" onclick="closeModal()">
+<!--		Bug à régler: au clic sur la modale ça ne doit pas la fermer-->
+
+	<div id="photo-gallery-modal">
+		<img src="./assets/icons/closebutton.svg" alt="Fermer" onclick="closeModal()" id="modal-close-button">
+		<h3>Galerie photo</h3>
+		<div id="modal-gallery"></div>
+		<button id="photo-gallery-button" onclick="openAddPhotoModal()">Ajouter une photo</button>
+	</div>
+	<div id="add-photo-modal">
+		<img src="./assets/icons/closebutton.svg" alt="Fermer" onclick="closeModal()">
+		<img src="./assets/icons/arrow-left.svg" alt="Retour" onClick="openPhotoGalleryModal()">
+		<h3>Ajout photo</h3>
+		<label for="title">Titre</label>
+		<input type="text" id="title" name="title">
+		<label for="category">Catégorie</label>
+		<input type="text" id="category" name="category">
+		<button id="add-photo-button" onclick="handleAddPhoto()">Valider</button>
+	</div>
+
+	</div>
 	<div id="edition-mode-header">
 		<p>Mode édition</p>
 	</div>
@@ -21,7 +45,7 @@
 			<li>projets</li>
 			<li>contact</li>
 			<li id="login-button"><a href="login.html">login</a></li>
-			<li id="logout-button">logout</li>
+			<li id="logout-button" onclick="logout()">logout</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -39,7 +63,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<div id="modify-text">
+		<div id="modify-text" onclick="openPhotoGalleryModal()">
 			modifier
 		</div>
 		<h2>Mes Projets</h2>
@@ -69,6 +93,7 @@
 		</ul>
 	</nav>
 </footer>
+
 <script src="script.js"></script>
 </body>
 </html>

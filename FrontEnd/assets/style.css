@@ -94,6 +94,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
@@ -302,6 +303,7 @@ label {
 	top: 65.2%;
 	font-size: 14px;
 	font-weight: 400;
+	cursor: pointer;
 }
 
 #modify-text::before {
@@ -315,4 +317,97 @@ label {
 
 #logout-button {
 	display: none;
+}
+
+#photo-gallery-modal {
+	display: none;
+	height: 670px;
+	width: 630px;
+	background-color: white;
+	border-radius: 10px;
+	z-index: 3;
+	overflow: hidden;
+	flex-direction: column;
+	align-items: center;
+}
+
+#add-photo-modal {
+	display: none;
+	height: 670px;
+	width: 630px;
+	background-color: white;
+	border-radius: 10px;
+	z-index: 3;
+	overflow: hidden;
+	flex-direction: column;
+	align-items: center;
+}
+
+#modal-close-button {
+	cursor: pointer;
+	height: 12px;
+	width: 12px;
+	padding-left: 89%;
+	padding-top: 4%;
+}
+
+#modal-overlay {
+	display: none;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.no-scroll {
+	overflow: hidden;
+}
+
+#photo-gallery-modal h3, #add-photo-modal h3 {
+	font-weight: 400;
+	font-size: 26px;
+	font-family: 'Work Sans';
+	padding-top: 20px;
+}
+
+#photo-gallery-button {
+	background-color: rgba(29, 97, 84, 1);
+	margin: 7px;
+	border-radius: 60px;
+	font-weight: 700;
+	font-family: 'Syne';
+	font-size: 14px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	padding-left: 50px;
+	padding-right: 50px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	margin-top: 13%;
+}
+
+#modal-gallery  {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-row-gap: 28px;
+	grid-column-gap: 8px;
+	max-height: 65%;
+}
+
+#modal-gallery figure {
+	height: 103px;
+	width: 80px;
+}
+
+#modal-gallery img {
+	height: 100%;
+	width: 100%;
 }

@@ -137,16 +137,18 @@ const logout = () => {
 
 toggleAdminHomepage();
 
+// Gestion des modales
+
 const openPhotoGalleryModal = async () => {
   const modal = document.getElementById("photo-gallery-modal");
   const overlay = document.getElementById("modal-overlay");
+  const addPhotoModal = document.getElementById("add-photo-modal");
+  addPhotoModal.style.display = "none";
   const allWorks = await getGalleryWorks();
   displayModalGallery(allWorks);
-  // addPhotoModal.style.display = "none";
 
   modal.style.display = "flex";
   overlay.style.display = "flex";
-  document.body.classList.add("no-scroll");
 };
 
 const closeModal = () => {
@@ -157,18 +159,16 @@ const closeModal = () => {
   photoGalleryModal.style.display = "none";
   addPhotoModal.style.display = "none";
   overlay.style.display = "none";
-  document.body.classList.remove("no-scroll");
 };
 
 const openAddPhotoModal = () => {
   const modal = document.getElementById("add-photo-modal");
-  // const photoGalleryModal = document.getElementById("photo-gallery-modal");
   const overlay = document.getElementById("modal-overlay");
-  // photoGalleryModal.style.display = "none";
+  const photoGalleryModal = document.getElementById("photo-gallery-modal");
+  photoGalleryModal.style.display = "none";
 
   modal.style.display = "flex";
   overlay.style.display = "flex";
-  document.body.classList.add("no-scroll");
 };
 
 const displayModalGallery = (galleryData) => {

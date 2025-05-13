@@ -179,10 +179,18 @@ const displayModalGallery = (galleryData) => {
   galleryData.forEach((work) => {
     const galleryWork = document.createElement("figure");
     const galleryWorkImage = document.createElement("img");
+    const trashIcon = document.createElement("img");
 
+    galleryWork.style.position = "relative";
+    trashIcon.src = "./assets/icons/trash.svg";
+    trashIcon.style.position = "absolute";
+    trashIcon.style.marginLeft = "-27%";
+    trashIcon.style.marginTop = "6%";
+    trashIcon.style.zIndex = "1";
     galleryWorkImage.src = work.imageUrl;
 
     galleryWork.appendChild(galleryWorkImage);
+    galleryWork.appendChild(trashIcon);
     modalGalleryContainer.appendChild(galleryWork);
   });
 };

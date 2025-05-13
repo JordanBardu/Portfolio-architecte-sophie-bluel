@@ -407,7 +407,7 @@ body.no-scroll {
 	width: 80px;
 }
 
-#modal-gallery img {
+#modal-gallery img:first-child {
 	height: 100%;
 	width: 100%;
 }

@@ -171,7 +171,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+#contact-submit-button {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -223,14 +223,14 @@ a {
 	color: inherit;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], #modal-category-input {
 	width: 379px;
 	height: 51px;
 	background-color: white;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
 
-label {
+#modal-category-container label, #modal-category-container label {
 	font-weight: 500;
 	font-size: 14px;
 	margin-bottom: 7px;
@@ -250,10 +250,18 @@ label {
 	margin-top: 150px;
 }
 
-#connect {
+#connect-button {
 	padding-bottom: 10px;
 	padding-top: 10px;
 	cursor: pointer;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
 }
 
 .login-element {
@@ -399,7 +407,8 @@ body.no-scroll {
 	grid-template-rows: repeat(3, 1fr);
 	grid-row-gap: 28px;
 	grid-column-gap: 8px;
-	max-height: 65%;
+	max-height: 55%;
+	overflow-y: scroll;
 }
 
 #modal-gallery figure {
@@ -423,16 +432,6 @@ body.no-scroll {
 	align-items: center;
 }
 
-#add-photo-container button {
-	font-size: 14px;
-	font-weight: 500;
-	margin-bottom: 7px;
-	margin-top: 6px;
-	padding: 10px 33px;
-	background-color: rgba(203, 214, 220, 1);
-	border-radius: 50px;
-}
-
 #add-photo-container img {
 	width: 76px;
 	height: 76px;
@@ -443,11 +442,6 @@ body.no-scroll {
 	font-weight: 400;
 }
 
-#add-photo-modal label {
-	font-size: 14px;
-	font-weight: 500;
-}
-
 #add-photo-button {
 	width: 237px;
 	margin-top: 80px;
@@ -455,4 +449,53 @@ body.no-scroll {
 	color: white;
 	padding: 10px 50px;
 	border-radius: 60px;
+}
+
+#modal-back-button {
+	margin-right: 90%;
+	cursor: pointer;
+}
+
+#modal-title-container {
+	margin-top: 30px;
+}
+
+#modal-category-container {
+	margin-top: 20px;
+}
+
+#add-picture-input {
+	display: none;
+}
+
+.add-picture-button {
+	color: rgba(48, 102, 133, 1);
+	background-color: rgba(203, 214, 220, 1);
+	border-radius: 50px;
+	margin-bottom: 7px;
+	margin-top: 6px;
+	padding: 10px 30px;
+}
+
+.add-picture-button:hover {
+	cursor: pointer;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#modal-category-input, #modal-title-input {
+	margin-top: 12px;
+	padding-left: 16px;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+#modal-category-input {
+	border: none;
+	width: 395px;
 }

@@ -24,6 +24,7 @@ document
   .getElementById("modal-back-button")
   .addEventListener("click", function () {
     openPhotoGalleryModal();
+    cleanModal();
   });
 
 document.getElementById("logout-button").addEventListener("click", function () {
@@ -33,3 +34,7 @@ document.getElementById("logout-button").addEventListener("click", function () {
 document.getElementById("modify-text").addEventListener("click", function () {
   openPhotoGalleryModal();
 });
+
+modalTitle.addEventListener("change", isPhotoFormValid);
+modalCategory.addEventListener("change", isPhotoFormValid);
+modalFileInput.addEventListener("change", isPhotoFormValid);

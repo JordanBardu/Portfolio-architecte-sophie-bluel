@@ -18,3 +18,11 @@ Ouvrir le dossier Frontend et lancer liveserver de votre IDE
 ## Astuce
  
 Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème
+
+
+TODO 
+
+
+- Faire slider soutenance
+- Déposer le .zip sur ocr
+- Fix le formulaire de contact

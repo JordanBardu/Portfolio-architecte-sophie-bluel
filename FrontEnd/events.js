@@ -35,6 +35,6 @@ document.getElementById("modify-text").addEventListener("click", function () {
   openPhotoGalleryModal();
 });
 
-modalTitle.addEventListener("change", isPhotoFormValid);
+modalTitle.addEventListener("input", isPhotoFormValid);
 modalCategory.addEventListener("change", isPhotoFormValid);
 modalFileInput.addEventListener("change", isPhotoFormValid);

@@ -141,18 +141,19 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
+
 #contact > * {
 	text-align: center;
 
 }
-#contact h2{
+#contact h2 {
 	margin-bottom: 20px;
 }
 #contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -223,7 +224,20 @@ a {
 	color: inherit;
 }
 
-input[type="text"], input[type="password"], #modal-category-input {
+#login-email, input[type="password"] {
+	width: 379px;
+	height: 51px;
+	background-color: white;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	margin-bottom: 25px;
+	padding-left: 5px;
+}
+
+.login-title {
+	margin-bottom: 20px;
+}
+
+#modal-category-input {
 	width: 379px;
 	height: 51px;
 	background-color: white;
@@ -372,10 +386,6 @@ input[type="text"], input[type="password"], #modal-category-input {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-body.no-scroll {
-	overflow: hidden;
-}
-
 #photo-gallery-modal h3, #add-photo-modal h3 {
 	font-weight: 400;
 	font-size: 26px;
@@ -390,10 +400,7 @@ body.no-scroll {
 	font-weight: 700;
 	font-family: 'Syne';
 	font-size: 14px;
-	padding-top: 9px;
-	padding-bottom: 9px;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding: 9px 50px;
 	text-align: center;
 	color: white;
 	cursor: pointer;
@@ -407,7 +414,7 @@ body.no-scroll {
 	grid-template-rows: repeat(3, 1fr);
 	grid-row-gap: 28px;
 	grid-column-gap: 8px;
-	max-height: 55%;
+	max-height: 65%;
 	overflow-y: scroll;
 }
 
@@ -451,9 +458,14 @@ body.no-scroll {
 	border-radius: 60px;
 }
 
+#add-photo-button:hover {
+	cursor: pointer;
+}
+
 #modal-back-button {
 	margin-right: 90%;
 	cursor: pointer;
+	margin-top: -19px;
 }
 
 #modal-title-container {
@@ -481,11 +493,19 @@ body.no-scroll {
 	cursor: pointer;
 }
 
-form {
+#add-photo-form {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+#modal-title-input {
+	width: 395px;
+	height: 51px;
+	background-color: white;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
 }
 
 #modal-category-input, #modal-title-input {

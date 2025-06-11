@@ -13,13 +13,6 @@ const getGalleryWorks = async () => {
   }
 };
 
-const init = async () => {
-  const allWorks = await getGalleryWorks();
-  displayGalleryWork(allWorks);
-};
-
-init();
-
 const displayGalleryWork = (galleryData) => {
   const galleryContainer = document.getElementsByClassName("gallery")[0];
   galleryContainer.innerHTML = "";
@@ -42,10 +35,8 @@ const displayGalleryWork = (galleryData) => {
   });
 };
 
-// Récupération des catégories et construction du menu de filtrer dynamiquement
-
-const getCategories = async () => {
-  const categories = await fetch("http://localhost:5678/api/categories")
+const getCategories = () => {
+  const categories = fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
     .then((data) => {
       return data;
@@ -140,3 +131,10 @@ const logout = () => {
 };
 
 toggleAdminHomepage();
+
+const init = async () => {
+  const allWorks = await getGalleryWorks();
+  displayGalleryWork(allWorks);
+};
+
+init();

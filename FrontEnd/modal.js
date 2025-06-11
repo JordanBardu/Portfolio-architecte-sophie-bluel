@@ -2,6 +2,7 @@ const modalTitle = document.getElementById("modal-title-input");
 const modalCategory = document.getElementById("modal-category-input");
 const modalFileInput = document.getElementById("add-picture-input");
 const modalSubmitButton = document.getElementById("add-photo-button");
+const fileInput = document.getElementById("add-picture-input");
 
 const getCategorySelector = async () => {
   const categories = await getCategories();
@@ -56,6 +57,7 @@ const addNewWork = (data) => {
   const newWorkTitle = document.createElement("figcaption");
   newWorkTitle.innerHTML = document.getElementById("modal-title-input").value;
   newWorkImage.src = data.imageUrl;
+  newWorkImage.style.height = "100%";
   newWork.setAttribute("workId", data.id);
 
   newWork.appendChild(newWorkImage);
@@ -195,6 +197,8 @@ const closeModal = () => {
   const addPhotoModal = document.getElementById("add-photo-modal");
   const overlay = document.getElementById("modal-overlay");
 
+  cleanModal();
+
   photoGalleryModal.style.display = "none";
   addPhotoModal.style.display = "none";
   overlay.style.display = "none";
@@ -211,12 +215,6 @@ const openPhotoGalleryModal = async () => {
   modal.style.display = "flex";
   overlay.style.display = "flex";
 };
-
-const fileInput = document.getElementById("add-picture-input");
-
-fileInput.addEventListener("change", function () {
-  handleAddFileModal();
-});
 
 const handleAddFileModal = () => {
   const previewImage = document.getElementById("image-preview");
@@ -256,6 +254,14 @@ const handleAddFileModal = () => {
 
 const cleanModal = () => {
   const previewImage = document.getElementById("image-preview");
+  const modalSubmitButton =
+    document.getElementsByClassName("add-picture-button")[0];
+  const modalText = document.getElementById("valid-format-text");
   previewImage.src = "./assets/icons/pictureplaceholder.svg";
+  previewImage.style.height = "76px";
+  previewImage.style.width = "76px";
+  modalSubmitButton.style.display = "block";
+  modalText.style.display = "block";
+
   modalTitle.value = "";
 };

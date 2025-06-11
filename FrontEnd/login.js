@@ -1,7 +1,17 @@
-document.getElementById("login-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  logIn();
-});
+document
+  .getElementById("login-form")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("password").value;
+
+    const result = await handleConnection(email, password);
+
+    if (result) {
+      localStorage.setItem("token", result.token);
+      window.location.href = "index.html";
+    }
+  });
 
 const handleConnection = async (email, password) => {
   try {
@@ -36,16 +46,4 @@ const handleLoginErrors = (error) => {
   }
 
   formContainer.appendChild(errorMessage);
-};
-
-const logIn = async () => {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("password").value;
-
-  const result = await handleConnection(email, password);
-
-  if (result) {
-    localStorage.setItem("token", result.token);
-    window.location.href = "index.html";
-  }
 };

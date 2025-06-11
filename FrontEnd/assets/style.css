@@ -289,7 +289,7 @@ a {
 .error-message {
 	color: white;
 	font-size: 20px;
-	margin-top: 20px;
+	margin-top: 9px;
 	border-radius: 5px;
 	padding: 10px;
 	background-color: #BF3030;
@@ -321,8 +321,8 @@ a {
 	display: none;
 	justify-content: flex-end;
 	position: absolute;
-	right: 35%;
-	top: 65.2%;
+	right: 39%;
+	top: 63.2%;
 	font-size: 14px;
 	font-weight: 400;
 	cursor: pointer;

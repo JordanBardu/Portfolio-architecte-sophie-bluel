@@ -24,12 +24,17 @@ document
   .getElementById("modal-back-button")
   .addEventListener("click", function () {
     openPhotoGalleryModal();
-    cleanModal();
   });
 
 document.getElementById("logout-button").addEventListener("click", function () {
   logout();
 });
+
+document
+  .getElementById("add-picture-input")
+  .addEventListener("change", function () {
+    handleAddFileModal();
+  });
 
 document.getElementById("modify-text").addEventListener("click", function () {
   openPhotoGalleryModal();
